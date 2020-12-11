@@ -15,8 +15,8 @@
       state: latest
       update_cache: yes
 
-   - name: delete logs
-     shell: rm -rf /var/log/zabbix/*
+  - name: delete logs
+    shell: rm -rf /var/log/zabbix/*
 
   - name: enable zabbix-proxy autostart
     systemd:
