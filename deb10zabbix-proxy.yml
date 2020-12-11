@@ -28,5 +28,5 @@
 
   - name: restart zabbix-proxy
     service:
-      name: zabbix-proxy-proxy
+      name: zabbix-proxy
       state: restarted
