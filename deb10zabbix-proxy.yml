@@ -15,18 +15,8 @@
       state: latest
       update_cache: yes
 
-  - name: search logs
-    find:
-      path: /var/log/zabbix/*
-      file_type: any
-      hidden: yes
-    register: fordelete
-
-  - name: delete logs
-    file:
-      path: /var/log/zabbix/
-      state: absent
-    with_items: "{{ fordelete.files }}"
+   - name: delete logs
+     shell: rm -rf /var/log/zabbix/*
 
   - name: enable zabbix-proxy autostart
     systemd:
