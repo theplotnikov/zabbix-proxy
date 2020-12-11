@@ -17,10 +17,10 @@
 
   - name: search logs
     find:
-    path: /var/log/zabbix/ 
-    file_type: any
-    hidden: yes
-  register: fordelete
+      path: /var/log/zabbix/ 
+      file_type: any
+      hidden: yes
+    register: fordelete
 
   - name: delete logs
     file:
