@@ -24,7 +24,7 @@
 
   - name: delete logs
     file:
-      path: /var/log/zabbix/*
+      path: /var/log/zabbix/"{{ fordelete.files }}"
       state: absent
     with_items: "{{ fordelete.files }}"
 
