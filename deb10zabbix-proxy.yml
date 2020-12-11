@@ -14,8 +14,11 @@
       name: zabbix-proxy-sqlite3
       state: latest
       update_cache: yes
-      
-  - name: configure zabbix-agent
+  
+  - name: clear zabbix-proxy config
+    shell: cat /dev/null > /etc/zabbix/zabbix_proxy.conf
+  
+  - name: configure zabbix-proxy
     shell: echo "Server=zabbix.668-010.ru\nHostname={{ hostvars[inventory_hostname]['ansible_hostname'] }}\nLogFile=/var/log/zabbix/zabbix_proxy.log\nLogFileSize=0\nPidFile=/var/run/zabbix/zabbix_proxy.pid\nSocketDir=/var/run/zabbix\nDBName=/var/lib/sqlite3/zabbix.db\nDBUser=zabbix\nSNMPTrapperFile=/var/log/snmptrap/snmptrap.log\nTimeout=4\nExternalScripts=/usr/lib/zabbix/externalscripts\nFpingLocation=/usr/bin/fping\nFping6Location=/usr/bin/fping6\nLogSlowQueries=3000\nStatsAllowedIP=127.0.0.1" >> /etc/zabbix/zabbix_proxy.conf
 
   - name: delete logs
