@@ -17,14 +17,14 @@
 
   - name: search logs
     find:
-      path: /var/log/zabbix/
+      path: /var/log/zabbix/*
       file_type: any
       hidden: yes
     register: fordelete
 
   - name: delete logs
     file:
-      path: /var/log/zabbix/"{{ fordelete.files }}"
+      path: /var/log/zabbix/
       state: absent
     with_items: "{{ fordelete.files }}"
 
