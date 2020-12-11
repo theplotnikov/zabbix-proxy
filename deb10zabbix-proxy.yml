@@ -17,7 +17,7 @@
 
   - name: delete logs
     file:
-      path: /var/log/zabbix/.
+      path: /var/log/zabbix/
       state: absent
 
   - name: enable zabbix-proxy autostart
