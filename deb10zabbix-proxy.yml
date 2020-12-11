@@ -1,0 +1,32 @@
+---
+- name: zabbix-proxy installation
+  hosts: all
+  become: yes
+
+  tasks:
+
+  - name: download package and install zabbix-release
+    apt:
+      deb: http://repo.zabbix.com/zabbix/5.0/debian/pool/main/z/zabbix-release/zabbix-release_5.0-1%2Bbuster_all.deb
+
+  - name: install zabbix-proxy-sqlite3
+    apt:
+      name: zabbix-proxy-sqlite3
+      state: latest
+      update_cache: yes
+
+  - name: delete logs
+    file:
+      path: /var/log/zabbix/*
+      state: absent
+
+  - name: enable zabbix-proxy-sqlite3 autostart
+    systemd:
+      name: zabbix-proxy-sqlite3
+      enabled: yes
+      state: started
+
+  - name: restart zabbix-agent
+    service:
+      name: zabbix-proxy-sqlite3
+      state: restarted
